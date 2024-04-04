@@ -21,7 +21,7 @@ def print_board():
         print('-' * 5)
 
 
-def is_win(player):
+def is_win(player, board):
     """
     Check rows, columns, and diagonals for win condition for a given player.
 
@@ -42,8 +42,8 @@ def is_win(player):
             return False 
         if not all([board[j][i] == player for j in range(3)]):  # Columns
             return False
-    if board[1][0] == board[1][1] == board[2][2] == player or \
-       board[1][2] == board[1][1] == board[2][0] == player:  # Diagonals 
+    if board[0][0] == board[1][1] == board[2][2] == player or \
+       board[0][2] == board[1][1] == board[2][0] == player:  # Diagonals
         return True
 
 
@@ -85,7 +85,7 @@ def main():
         row, col = map(int, input(f"Player {current_player}, enter row and column (0-2) separated by space: ").split())
         if board[row][col] == ' ':
             board[row][col] = current_player
-            win = is_win(current_player)
+            win = is_win(current_player,board)
             results.append(win)
             if win:
                 print_board()
