@@ -38,13 +38,16 @@ def is_win(player, board):
     True
     """
     for i in range(3):
-        if not all([cell == player for cell in board[i]]):  # Rows
-            return False 
-        if not all([board[j][i] == player for j in range(3)]):  # Columns
-            return False
+        if all([cell == player for cell in board[i]]):  # Rows
+            return True
+    for i in range(3):
+        if all([board[j][i] == player for j in range(3)]):  # Columns
+            return True
     if board[0][0] == board[1][1] == board[2][2] == player or \
        board[0][2] == board[1][1] == board[2][0] == player:  # Diagonals
         return True
+
+    return False
 
 
 def tally_wins(results):
